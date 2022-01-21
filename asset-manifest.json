@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/lol-profile-viewer/static/css/main.89ffa3cb.css",
+    "main.js": "/lol-profile-viewer/static/js/main.fea54e1f.js",
+    "static/js/787.db9b214f.chunk.js": "/lol-profile-viewer/static/js/787.db9b214f.chunk.js",
+    "static/media/logo.svg": "/lol-profile-viewer/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/lol-profile-viewer/index.html",
+    "main.89ffa3cb.css.map": "/lol-profile-viewer/static/css/main.89ffa3cb.css.map",
+    "main.fea54e1f.js.map": "/lol-profile-viewer/static/js/main.fea54e1f.js.map",
+    "787.db9b214f.chunk.js.map": "/lol-profile-viewer/static/js/787.db9b214f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.89ffa3cb.css",
+    "static/js/main.fea54e1f.js"
+  ]
+}
