@@ -22,7 +22,7 @@ export default function Card(props) {
   }
   function getChampionData(accountID) {
     fetch(
-      `https://br1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${accountID}?api_key=RGAPI-2f444ac5-b68c-494b-991e-237369c8b97f`
+      `https://br1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${accountID}?api_key=RGAPI-0d841599-bba9-4dea-b9a8-77664ce2e73e`
     )
       .then((res) => res.json())
       .then((res) => {
@@ -38,7 +38,7 @@ export default function Card(props) {
   }
   function updateCard() {
     const name = document.getElementById("searchbar2").value;
-    const url = `https://br1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${name}?api_key=RGAPI-2f444ac5-b68c-494b-991e-237369c8b97f`;
+    const url = `https://br1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${name}?api_key=RGAPI-0d841599-bba9-4dea-b9a8-77664ce2e73e`;
     fetch(url)
       .then((res) => res.json())
       .then((res) => {

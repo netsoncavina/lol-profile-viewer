@@ -9,7 +9,7 @@ function App() {
         icon="4945"
         level={9999}
         champion="Ezreal"
-        championPoints={500}
+        championPoints={600}
       />
     </div>
   );
