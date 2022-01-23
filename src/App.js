@@ -5,9 +5,9 @@ import Searchbar from "./components/Searchbar";
 
 function App() {
   return (
-    <div className="App">
-      <Card />
-    </div>
+    // <div className="App">
+    <Card />
+    // </div>
   );
 }
 

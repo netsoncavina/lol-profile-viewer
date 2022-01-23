@@ -13,17 +13,28 @@ code {
     monospace;
 }
 
+.App {
+  background-image: url("../public/images/Draven_20.jpg");
+  background-repeat: space;
+  background-size: cover;
+  height: 665px;
+}
+
 .searchbar {
   padding-top: 20px;
 }
 
 .card {
+  background-repeat: no-repeat;
+  background-size: cover;
   margin: auto;
   padding: 20px;
   width: 500px;
   height: 550px;
+
   -webkit-box-shadow: 9px 11px 19px 5px rgba(0, 0, 0, 0.96);
   box-shadow: 9px 11px 19px 5px rgba(0, 0, 0, 0.96);
+  color: rgb(141, 137, 137);
 }
 
 .card--icon {

@@ -7,6 +7,7 @@ import championData from "../championData";
 import KEY from "../KEY";
 
 export default function Card(props) {
+  const [background, setBackground] = useState(`url("./images/Draven_20.jpg")`);
   const [name, setName] = useState("Pain Gaming");
   const [icon, setIcon] = useState(`./images/profileicon/4945.png`);
   const [level, setLevel] = useState("300");
@@ -44,8 +45,12 @@ export default function Card(props) {
           const tier = "UNRANKED";
           const losses = 0;
           const wins = 0;
-          const winrate = Math.round((wins / (wins + losses)) * 100);
-
+          const pdl = 0;
+          const winrate = 0;
+          setPdl(pdl);
+          setLosses(losses);
+          setWins(wins);
+          setWinrate(winrate);
           setRankedTier(`./images/ranked/UNRANKED.png`);
 
           console.log(tier);
@@ -94,7 +99,16 @@ export default function Card(props) {
         setMaestry(
           `./images/mastery/mastery-${getAllChampionInfo(res[0])[1]}.png`
         );
-
+        setBackground(
+          `url("./images/centered/${getChampionName(
+            getAllChampionInfo(res[0])[0]
+          )}_0.jpg")`
+        );
+        console.log(
+          `url("./images/${getChampionName(
+            getAllChampionInfo(res[0])[0]
+          )}_0.jpg")`
+        );
         setChampion2(`./images/champion/${getAllChampionInfo(res[1])[3]}.png`);
         setChampionName2(getChampionName(getAllChampionInfo(res[1])[0]));
         setChampionPoints2(getAllChampionInfo(res[1])[2]);
@@ -133,7 +147,12 @@ export default function Card(props) {
   }
 
   return (
-    <>
+    <div
+      className="App"
+      style={{
+        backgroundImage: `${background}`,
+      }}
+    >
       <Row className="justify-content-md-center searchbar">
         <Col md="auto">
           <InputGroup className="mb-3">
@@ -153,7 +172,13 @@ export default function Card(props) {
           </InputGroup>
         </Col>
       </Row>
-      <div className="card">
+
+      <div
+        className="card"
+        style={{
+          backgroundImage: `${background}`,
+        }}
+      >
         <h3>{name}</h3>
         <h4>Level {level}</h4>
         <Tippy
@@ -206,6 +231,6 @@ export default function Card(props) {
           </Tippy>
         </div>
       </div>
-    </>
+    </div>
   );
 }
