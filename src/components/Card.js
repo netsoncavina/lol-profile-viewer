@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import { InputGroup, FormControl, Col, Row } from "react-bootstrap";
 import championData from "../championData";
+import KEY from "../KEY";
 
 export default function Card(props) {
   const [name, setName] = useState(props.name);
@@ -22,7 +23,7 @@ export default function Card(props) {
   }
   function getChampionData(accountID) {
     fetch(
-      `https://br1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${accountID}?api_key=RGAPI-0d841599-bba9-4dea-b9a8-77664ce2e73e`
+      `https://br1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${accountID}?api_key=${KEY}`
     )
       .then((res) => res.json())
       .then((res) => {
@@ -38,7 +39,7 @@ export default function Card(props) {
   }
   function updateCard() {
     const name = document.getElementById("searchbar2").value;
-    const url = `https://br1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${name}?api_key=RGAPI-0d841599-bba9-4dea-b9a8-77664ce2e73e`;
+    const url = `https://br1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${name}?api_key=${KEY}`;
     fetch(url)
       .then((res) => res.json())
       .then((res) => {
