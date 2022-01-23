@@ -1,16 +1,12 @@
 import logo from "./logo.svg";
 import "./App.css";
 import Card from "./components/Card";
+import Searchbar from "./components/Searchbar";
+
 function App() {
   return (
     <div className="App">
-      <Card
-        name="Pain Gaming"
-        icon="4945"
-        level={9999}
-        champion="Ezreal"
-        championPoints={600}
-      />
+      <Card />
     </div>
   );
 }

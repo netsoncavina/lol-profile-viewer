@@ -32,8 +32,23 @@ code {
   margin: auto;
 }
 
+.card--champions {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .card--champion {
   width: 60px;
   border-radius: 50%;
-  margin: auto;
+  margin: 20px;
+}
+
+.tippy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tooltip--name {
+  justify-content: center;
 }

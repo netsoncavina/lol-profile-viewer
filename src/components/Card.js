@@ -1,18 +1,29 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import { InputGroup, FormControl, Col, Row } from "react-bootstrap";
+import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css"; // optional
 import championData from "../championData";
 import KEY from "../KEY";
 
 export default function Card(props) {
-  const [name, setName] = useState(props.name);
-  const [icon, setIcon] = useState(`./images/profileicon/${props.icon}.png`);
-  const [level, setLevel] = useState(props.level);
-  const [champion, setChampion] = useState(
-    `./images/champion/${props.champion}.png`
-  );
-  const [championName, setChampionName] = useState(props.champion);
-  const [championPoints, setChampionPoints] = useState(props.championPoints);
+  const [name, setName] = useState("Pain Gaming");
+  const [icon, setIcon] = useState(`./images/profileicon/4945.png`);
+  const [level, setLevel] = useState("300");
+  const [champion, setChampion] = useState(`./images/champion/draven.png`);
+  const [championName, setChampionName] = useState("Draven");
+  const [championPoints, setChampionPoints] = useState("99999");
+  const [maestry, setMaestry] = useState(`./images/mastery/mastery-7.png`);
+
+  const [champion2, setChampion2] = useState(`./images/champion/kaisa.png`);
+  const [championName2, setChampionName2] = useState("Kai'sa");
+  const [championPoints2, setChampionPoints2] = useState("10000");
+  const [maestry2, setMaestry2] = useState(`./images/mastery/mastery-7.png`);
+
+  const [champion3, setChampion3] = useState(`./images/champion/ezreal.png`);
+  const [championName3, setChampionName3] = useState("Ezreal");
+  const [championPoints3, setChampionPoints3] = useState("10000");
+  const [maestry3, setMaestry3] = useState(`./images/mastery/mastery-7.png`);
 
   function getChampionName(championId) {
     for (let i = 0; i < championData.length; i++) {
@@ -21,20 +32,46 @@ export default function Card(props) {
       }
     }
   }
+
+  function getAllChampionInfo(res) {
+    const championID = res.championId;
+    const maestry = res.championLevel;
+    const points = res.championPoints;
+    const championName = getChampionName(championID);
+    return [championID, maestry, points, championName];
+  }
+
   function getChampionData(accountID) {
     fetch(
       `https://br1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${accountID}?api_key=${KEY}`
     )
       .then((res) => res.json())
       .then((res) => {
-        const championID = res[0].championId;
-        const maestry = res[0].championLevel;
-        const points = res[0].championPoints;
-        const championName = getChampionName(championID);
-        setChampion(`./images/champion/${championName}.png`);
-        setChampionName(getChampionName(championID));
-        setChampionPoints(points);
-        console.log(championName);
+        setChampion(`./images/champion/${getAllChampionInfo(res[0])[3]}.png`);
+        setChampionName(getChampionName(getAllChampionInfo(res[0])[0]));
+        setChampionPoints(getAllChampionInfo(res[0])[2]);
+        setMaestry(
+          `./images/mastery/mastery-${getAllChampionInfo(res[0])[1]}.png`
+        );
+
+        setChampion2(`./images/champion/${getAllChampionInfo(res[1])[3]}.png`);
+        setChampionName2(getChampionName(getAllChampionInfo(res[1])[0]));
+        setChampionPoints2(getAllChampionInfo(res[1])[2]);
+        setMaestry2(
+          `./images/mastery/mastery-${getAllChampionInfo(res[1])[1]}.png`
+        );
+
+        setChampion3(`./images/champion/${getAllChampionInfo(res[2])[3]}.png`);
+        setChampionName3(getChampionName(getAllChampionInfo(res[2])[0]));
+        setChampionPoints3(getAllChampionInfo(res[2])[2]);
+        setMaestry3(
+          `./images/mastery/mastery-${getAllChampionInfo(res[2])[1]}.png`
+        );
+        console.log(
+          getChampionName(res[0].championId),
+          getChampionName(res[1].championId),
+          getChampionName(res[2].championId)
+        );
       });
   }
   function updateCard() {
@@ -78,10 +115,42 @@ export default function Card(props) {
         <h3>{name}</h3>
         <h4>Level {level}</h4>
         <img className="card--icon" src={icon}></img>
-        <h5>Most Played champion</h5>
-        <h5>{championName}</h5>
-        <img className="card--champion" src={champion}></img>
-        <h5>{championPoints} Maestry Points</h5>
+        <h5>Favorite Champions</h5>
+        <div className="card--champions">
+          <Tippy
+            content={
+              <div className="tippy">
+                <h5 className="tooltip--name">{championName2}</h5>
+                <img src={maestry2}></img>
+                <h5>{championPoints2} Maestry Points</h5>
+              </div>
+            }
+          >
+            <img className="card--champion" src={champion2}></img>
+          </Tippy>
+          <Tippy
+            content={
+              <div className="tippy">
+                <h5 className="tooltip--name">{championName}</h5>
+                <img src={maestry}></img>
+                <h5>{championPoints} Maestry Points</h5>
+              </div>
+            }
+          >
+            <img className="card--champion" src={champion}></img>
+          </Tippy>
+          <Tippy
+            content={
+              <div className="tippy">
+                <h5 className="tooltip--name">{championName3}</h5>
+                <img src={maestry3}></img>
+                <h5>{championPoints3} Maestry Points</h5>
+              </div>
+            }
+          >
+            <img className="card--champion" src={champion3}></img>
+          </Tippy>
+        </div>
       </div>
     </>
   );
