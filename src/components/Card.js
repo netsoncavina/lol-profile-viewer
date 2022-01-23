@@ -10,20 +10,61 @@ export default function Card(props) {
   const [name, setName] = useState("Pain Gaming");
   const [icon, setIcon] = useState(`./images/profileicon/4945.png`);
   const [level, setLevel] = useState("300");
+  const [pdl, setPdl] = useState("0");
+  const [wins, setWins] = useState("0");
+  const [losses, setLosses] = useState("0");
+  const [winrate, setWinrate] = useState("0");
+  const [rankedTier, setRankedTier] = useState(`./images/ranked/UNRANKED.png`);
+
+  // Champion 1
   const [champion, setChampion] = useState(`./images/champion/draven.png`);
   const [championName, setChampionName] = useState("Draven");
   const [championPoints, setChampionPoints] = useState("99999");
   const [maestry, setMaestry] = useState(`./images/mastery/mastery-7.png`);
 
+  // Champion 2
   const [champion2, setChampion2] = useState(`./images/champion/kaisa.png`);
   const [championName2, setChampionName2] = useState("Kai'sa");
   const [championPoints2, setChampionPoints2] = useState("10000");
   const [maestry2, setMaestry2] = useState(`./images/mastery/mastery-7.png`);
 
+  // Champion 3
   const [champion3, setChampion3] = useState(`./images/champion/ezreal.png`);
   const [championName3, setChampionName3] = useState("Ezreal");
   const [championPoints3, setChampionPoints3] = useState("10000");
   const [maestry3, setMaestry3] = useState(`./images/mastery/mastery-7.png`);
+
+  function getRankedData(accountID) {
+    fetch(
+      `https://br1.api.riotgames.com/lol/league/v4/entries/by-summoner/${accountID}?api_key=${KEY}`
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        if (!res[0]) {
+          const tier = "UNRANKED";
+          const losses = 0;
+          const wins = 0;
+          const winrate = Math.round((wins / (wins + losses)) * 100);
+
+          setRankedTier(`./images/ranked/UNRANKED.png`);
+
+          console.log(tier);
+        } else {
+          const pdl = res[0].leaguePoints;
+          const losses = res[0].losses;
+          const wins = res[0].wins;
+          const winrate = Math.round((wins / (wins + losses)) * 100);
+          const tier = res[0].tier;
+          setPdl(pdl);
+          setLosses(losses);
+          setWins(wins);
+          setWinrate(winrate);
+          setRankedTier(`./images/ranked/${tier}.png`);
+
+          console.log(res, pdl, losses, wins, winrate, tier);
+        }
+      });
+  }
 
   function getChampionName(championId) {
     for (let i = 0; i < championData.length; i++) {
@@ -86,6 +127,7 @@ export default function Card(props) {
         setLevel(res.summonerLevel);
         const accountID = res.id;
         getChampionData(accountID);
+        getRankedData(accountID);
         document.getElementById("searchbar2").value = "";
       });
   }
@@ -114,10 +156,21 @@ export default function Card(props) {
       <div className="card">
         <h3>{name}</h3>
         <h4>Level {level}</h4>
-        <img className="card--icon" src={icon}></img>
+        <Tippy
+          placement="right"
+          content={
+            <div className="card--ranked tippy">
+              <p>PDL: {pdl}</p> <p>Winrate: {winrate}%</p>
+              <img className="card--tier" src={rankedTier}></img>
+            </div>
+          }
+        >
+          <img className="card--icon" src={icon}></img>
+        </Tippy>
         <h5>Favorite Champions</h5>
         <div className="card--champions">
           <Tippy
+            placement="left"
             content={
               <div className="tippy">
                 <h5 className="tooltip--name">{championName2}</h5>
@@ -140,6 +193,7 @@ export default function Card(props) {
             <img className="card--champion" src={champion}></img>
           </Tippy>
           <Tippy
+            placement="right"
             content={
               <div className="tippy">
                 <h5 className="tooltip--name">{championName3}</h5>
