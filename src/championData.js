@@ -146,7 +146,7 @@ let champions = [
   { id: 19, name: "Warwick" },
   { id: 498, name: "Xayah" },
   { id: 101, name: "Xerath" },
-  { id: 5, name: "Xin Zhao" },
+  { id: 5, name: "XinZhao" },
   { id: 157, name: "Yasuo" },
   { id: 777, name: "Yone" },
   { id: 83, name: "Yorick" },

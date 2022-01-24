@@ -14,7 +14,7 @@ code {
 }
 
 .App {
-  background-image: url("../public/images/Draven_20.jpg");
+  background-image: url("../public/images/centered/Draven_20.jpg");
   background-repeat: space;
   background-size: cover;
   height: 665px;
@@ -22,6 +22,11 @@ code {
 
 .searchbar {
   padding-top: 20px;
+}
+
+.bg-transparent:hover::-webkit-input-placeholder {
+  color: rgb(255, 255, 255);
+  background-color: rgba(168, 154, 154, 0.336);
 }
 
 .card {

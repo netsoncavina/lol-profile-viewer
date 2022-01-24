@@ -5,9 +5,21 @@ import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css"; // optional
 import championData from "../championData";
 import KEY from "../KEY";
+// import {
+//   test,
+//   formatNumber,
+//   getRankedData,
+//   getChampionName,
+//   getAllChampionInfo,
+//   getChampionData,
+//   updateCard,
+// } from "../controller/card_controller";
+import formatNumber from "../controller/card_controller";
 
 export default function Card(props) {
-  const [background, setBackground] = useState(`url("./images/Draven_20.jpg")`);
+  const [background, setBackground] = useState(
+    `url("./images/centered/Draven_20.jpg")`
+  );
   const [name, setName] = useState("Pain Gaming");
   const [icon, setIcon] = useState(`./images/profileicon/4945.png`);
   const [level, setLevel] = useState("300");
@@ -36,37 +48,33 @@ export default function Card(props) {
   const [maestry3, setMaestry3] = useState(`./images/mastery/mastery-7.png`);
 
   function getRankedData(accountID) {
+    let found = false;
     fetch(
       `https://br1.api.riotgames.com/lol/league/v4/entries/by-summoner/${accountID}?api_key=${KEY}`
     )
       .then((res) => res.json())
       .then((res) => {
-        if (!res[0]) {
-          const tier = "UNRANKED";
-          const losses = 0;
-          const wins = 0;
-          const pdl = 0;
-          const winrate = 0;
-          setPdl(pdl);
-          setLosses(losses);
-          setWins(wins);
-          setWinrate(winrate);
+        for (let i = 0; i < res.length; i++) {
+          if (res[i].queueType === "RANKED_SOLO_5x5") {
+            const pdl = res[i].leaguePoints;
+            const losses = res[i].losses;
+            const wins = res[i].wins;
+            const winrate = Math.round((wins / (wins + losses)) * 100);
+            const tier = res[i].tier;
+            setPdl(pdl);
+            setLosses(losses);
+            setWins(wins);
+            setWinrate(winrate);
+            setRankedTier(`./images/ranked/${tier}.png`);
+            found = true;
+          }
+        }
+        if (!found) {
+          setPdl(0);
+          setLosses(0);
+          setWins(0);
+          setWinrate(0);
           setRankedTier(`./images/ranked/UNRANKED.png`);
-
-          console.log(tier);
-        } else {
-          const pdl = res[0].leaguePoints;
-          const losses = res[0].losses;
-          const wins = res[0].wins;
-          const winrate = Math.round((wins / (wins + losses)) * 100);
-          const tier = res[0].tier;
-          setPdl(pdl);
-          setLosses(losses);
-          setWins(wins);
-          setWinrate(winrate);
-          setRankedTier(`./images/ranked/${tier}.png`);
-
-          console.log(res, pdl, losses, wins, winrate, tier);
         }
       });
   }
@@ -104,11 +112,7 @@ export default function Card(props) {
             getAllChampionInfo(res[0])[0]
           )}_0.jpg")`
         );
-        console.log(
-          `url("./images/${getChampionName(
-            getAllChampionInfo(res[0])[0]
-          )}_0.jpg")`
-        );
+
         setChampion2(`./images/champion/${getAllChampionInfo(res[1])[3]}.png`);
         setChampionName2(getChampionName(getAllChampionInfo(res[1])[0]));
         setChampionPoints2(getAllChampionInfo(res[1])[2]);
@@ -122,27 +126,21 @@ export default function Card(props) {
         setMaestry3(
           `./images/mastery/mastery-${getAllChampionInfo(res[2])[1]}.png`
         );
-        console.log(
-          getChampionName(res[0].championId),
-          getChampionName(res[1].championId),
-          getChampionName(res[2].championId)
-        );
       });
   }
   function updateCard() {
-    const name = document.getElementById("searchbar2").value;
+    const name = document.getElementById("searchbar").value;
     const url = `https://br1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${name}?api_key=${KEY}`;
     fetch(url)
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
         setName(res.name);
         setIcon(`./images/profileicon/${res.profileIconId}.png`);
         setLevel(res.summonerLevel);
         const accountID = res.id;
         getChampionData(accountID);
         getRankedData(accountID);
-        document.getElementById("searchbar2").value = "";
+        document.getElementById("searchbar").value = "";
       });
   }
 
@@ -153,12 +151,13 @@ export default function Card(props) {
         backgroundImage: `${background}`,
       }}
     >
-      <Row className="justify-content-md-center searchbar">
+      <Row className="justify-content-md-center searchbar ">
         <Col md="auto">
-          <InputGroup className="mb-3">
+          <InputGroup className="mb-3 search" id="esse">
             <FormControl
+              className=" bg-transparent form"
               placeholder="Username"
-              id="searchbar2"
+              id="searchbar"
               aria-label="Username"
               aria-describedby="basic-addon2"
             />
@@ -200,7 +199,7 @@ export default function Card(props) {
               <div className="tippy">
                 <h5 className="tooltip--name">{championName2}</h5>
                 <img src={maestry2}></img>
-                <h5>{championPoints2} Maestry Points</h5>
+                <h5>{formatNumber(championPoints2)} Maestry Points</h5>
               </div>
             }
           >
@@ -211,7 +210,7 @@ export default function Card(props) {
               <div className="tippy">
                 <h5 className="tooltip--name">{championName}</h5>
                 <img src={maestry}></img>
-                <h5>{championPoints} Maestry Points</h5>
+                <h5>{formatNumber(championPoints)} Maestry Points</h5>
               </div>
             }
           >
@@ -223,7 +222,7 @@ export default function Card(props) {
               <div className="tippy">
                 <h5 className="tooltip--name">{championName3}</h5>
                 <img src={maestry3}></img>
-                <h5>{championPoints3} Maestry Points</h5>
+                <h5>{formatNumber(championPoints3)} Maestry Points</h5>
               </div>
             }
           >
