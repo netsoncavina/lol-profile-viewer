@@ -18,7 +18,7 @@ import formatNumber from "../controller/card_controller";
 
 export default function Card(props) {
   const [background, setBackground] = useState(
-    `url("./images/centered/Draven_20.jpg")`
+    `url("./images/centered/Draven_0.jpg")`
   );
   const [name, setName] = useState("Pain Gaming");
   const [icon, setIcon] = useState(`./images/profileicon/4945.png`);
