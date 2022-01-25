@@ -27,7 +27,7 @@ Antes de começar, verifique se você atendeu aos seguintes requisitos:
 
 Para instalar os modulos necessários para o LOL Profile Viewer execute o comando `npm install` dentro da pasta `client`, isso instalará todas as dependencias necessárias.
 
-## ☕ Usando <nome_do_projeto>
+## ☕ Usando LOL Profile Viewer
 
 Para usar o LOL Profile Viewer, siga estas etapas:
 
