@@ -1,70 +1,37 @@
-# Getting Started with Create React App
+# LOL Profile Viewer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+<img src="https://user-images.githubusercontent.com/1374081/150909089-704ad69b-2379-4ee9-8dd5-929be9802bed.png" width="90%"></img> <img src="https://user-images.githubusercontent.com/1374081/150909230-f22bbec5-eed9-48a5-9bea-86424be23050.png" width="90%"></img> <img src="https://user-images.githubusercontent.com/1374081/150909247-a3d10890-2e1a-46e4-8ebe-63f0178beab2.png" width="90%"></img> 
 
-In the project directory, you can run:
+> React app feito para exibir informações de perfis do League of Legends. Exibe o level do player, icone de invocador, e campeões mais utilizados. Ao posicionar o mouse sobre o icone de invocador, exibe o ELO e o winrate do player, ao posicionar o mouse sobre o icone dos campões, exibe a quantidade de pontos e maestria com o campeão.
 
-### `npm start`
+### Ajustes e melhorias
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- [x] Exibir ELO e winrate do player (tooltip)
+- [x] Exibir pontos e maestrias dos 3 campões mais utilizados (tooltip)
+- [ ] Exibir winrate das ultimas 20 partidas
+- [ ] Exibir historico de partidas
+- [ ] Exibir os campões mais utilizados nas ultimas partidas
 
-### `npm test`
+## 💻 Pré-requisitos
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Antes de começar, verifique se você atendeu aos seguintes requisitos:
+* Você instalou a versão mais recente do `node.js`
+* Você possui um programa para inicializar o react app (VS Code por exemplo).
+* Você possui o data_dragon mais recente (que pode ser obtido em https://developer.riotgames.com/docs/lol). As pastas necessárias do data_dragon são: `centered`, `champion`, `mastery`, `profileicon` e `ranked` que deverão ser inseridas em client -> public -> images.
+* Você possui uma KEY para acessar as APIs da RIOT que deverá ser substituida no `Card.js` ou exportada de um arquivo chamado `KEY.js` inserido em client -> src.
 
-### `npm run build`
+## 🚀 Instalando <nome_do_projeto>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Para instalar os modulos necessários para o LOL Profile Viewer execute o comando `npm install` dentro da pasta `client`, isso instalará todas as dependencias necessárias.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## ☕ Usando <nome_do_projeto>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Para usar o LOL Profile Viewer, siga estas etapas:
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+Acesse a pasta client 
+execute o comando npm start para inicializar o React App
+```
