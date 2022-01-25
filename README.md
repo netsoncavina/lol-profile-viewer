@@ -23,7 +23,7 @@ Antes de começar, verifique se você atendeu aos seguintes requisitos:
 * Você possui o data_dragon mais recente (que pode ser obtido em https://developer.riotgames.com/docs/lol). As pastas necessárias do data_dragon são: `centered`, `champion`, `mastery`, `profileicon` e `ranked` que deverão ser inseridas em client -> public -> images.
 * Você possui uma KEY para acessar as APIs da RIOT que deverá ser substituida no `Card.js` ou exportada de um arquivo chamado `KEY.js` inserido em client -> src.
 
-## 🚀 Instalando <nome_do_projeto>
+## 🚀 Instalando LOL Profile Viewer
 
 Para instalar os modulos necessários para o LOL Profile Viewer execute o comando `npm install` dentro da pasta `client`, isso instalará todas as dependencias necessárias.
 
