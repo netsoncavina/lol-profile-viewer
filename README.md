@@ -11,7 +11,7 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
 
 - [x] Exibir ELO e winrate do player (tooltip)
 - [x] Exibir pontos e maestrias dos 3 campões mais utilizados (tooltip)
-- [ ] Exibir winrate das ultimas 20 partidas
+- [x] Exibir winrate das ultimas 20 partidas
 - [ ] Exibir historico de partidas
 - [ ] Exibir os campões mais utilizados nas ultimas partidas
 
